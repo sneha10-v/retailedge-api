@@ -1,7 +1,7 @@
 name: PR Checks
 on:
   pull_request:
-    branches: [test-pr-checks]
+    branches: [master, test-pr-checks]
 jobs:
   quality:
     runs-on: ubuntu-latest
