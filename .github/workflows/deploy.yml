@@ -1,0 +1,13 @@
+name: Trigger Jenkins Deploy
+on:
+  push:
+    branches: [master]
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Jenkins Pipeline
+        run: |
+          curl -X POST --user ${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_TOKEN }} \
+            '${{ secrets.JENKINS_URL }}/job/retailedge-deploy/buildWithParameters' \
+            --data 'GIT_COMMIT=${{ github.sha }}' --data 'ENV=staging'
